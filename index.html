@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Hähnchenwagen by Eray – Ihr mobiler Hähnchengrillwagen für Parties, Firmenfeiern und Hochzeiten. Frisch vom Spieß, direkt zu Ihrem Event.">
+  <title>Hähnchenwagen by Eray – Grillhähnchen & Partyservice</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    /* =========================================
+       DESIGN TOKENS
+    ========================================= */
+    :root {
+      --dark:         #3A1A06;
+      --dark-2:       #4E2410;
+      --dark-3:       #2C1204;
+      --dark-card:    #5E2E14;
+      --orange:       #C85010;
+      --orange-h:     #E06020;
+      --gold:         #D4902A;
+      --gold-light:   #F0B840;
+      --cream:        #FAF0DC;
+      --cream-muted:  #DDC89A;
+      --white:        #FEF8EE;
+      --border:       rgba(212,144,42,0.35);
+      --shadow-sm:    0 4px 16px rgba(0,0,0,0.35);
+      --shadow:       0 8px 32px rgba(0,0,0,0.45);
+      --shadow-lg:    0 20px 60px rgba(0,0,0,0.55);
+      --radius:       10px;
+      --radius-lg:    18px;
+      --t:            200ms ease;
+    }
+
+    /* =========================================
+       RESET & BASE
+    ========================================= */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; font-size: 16px; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: 'Karla', sans-serif;
+      background: var(--dark);
+      color: var(--cream);
+      line-height: 1.65;
+      overflow-x: hidden;
+    }
+    img { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; font-family: inherit; border: none; background: none; }
+    ul { list-style: none; }
+    input, textarea, select { font-family: inherit; }
+
+    /* =========================================
+       TYPOGRAPHY
+    ========================================= */
+    h1, h2, h3, h4 {
+      font-family: 'Playfair Display SC', serif;
+      line-height: 1.12;
+      color: var(--white);
+    }
+    .label {
+      font-family: 'Karla', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+    .section-title { font-size: clamp(1.9rem, 4.5vw, 3.2rem); margin-top: 0.35rem; }
+
+    /* =========================================
+       LAYOUT
+    ========================================= */
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+    section { padding: 5.5rem 0; }
+
+    /* =========================================
+       BUTTONS
+    ========================================= */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--orange); color: var(--white);
+      font-size: 1rem; font-weight: 700;
+      padding: 0.9rem 2.1rem; border-radius: 8px;
+      letter-spacing: 0.02em; cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 20px rgba(201,68,8,0.45);
+    }
+    .btn-primary:hover { background: var(--orange-h); transform: translateY(-2px); box-shadow: 0 8px 30px rgba(201,68,8,0.55); }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: transparent; color: var(--cream);
+      font-size: 1rem; font-weight: 600;
+      padding: 0.9rem 2.1rem; border-radius: 8px;
+      border: 1.5px solid rgba(243,237,226,0.3);
+      transition: border-color var(--t), color var(--t), transform var(--t);
+      cursor: pointer;
+    }
+    .btn-secondary:hover { border-color: var(--gold-light); color: var(--gold-light); transform: translateY(-2px); }
+
+    /* =========================================
+       NAVIGATION
+    ========================================= */
+    .nav {
+      position: fixed; inset: 0 0 auto 0; z-index: 100;
+      transition: background var(--t), box-shadow var(--t);
+    }
+    .nav.scrolled {
+      background: rgba(40,16,4,0.97);
+      backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 2px 24px rgba(0,0,0,0.6);
+    }
+    .nav-inner {
+      max-width: 1180px; margin: 0 auto; padding: 1.1rem 1.5rem;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .nav-logo { display: flex; align-items: center; gap: 0.65rem; }
+    .nav-logo-icon { width: 38px; height: 38px; flex-shrink: 0; }
+    .nav-logo-text { font-family: 'Playfair Display SC', serif; font-size: 1.15rem; color: var(--white); }
+    .nav-logo-text em { color: var(--orange); font-style: normal; }
+    .nav-by { font-family: 'Karla', sans-serif; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; color: var(--cream-muted); text-transform: uppercase; }
+
+    .nav-links { display: flex; align-items: center; gap: 2.2rem; }
+    .nav-links a { font-size: 0.88rem; font-weight: 600; color: var(--cream-muted); letter-spacing: 0.04em; transition: color var(--t); }
+    .nav-links a:hover { color: var(--gold-light); }
+    .nav-links .nav-cta { background: var(--orange); color: var(--white); padding: 0.55rem 1.35rem; border-radius: 6px; transition: background var(--t); }
+    .nav-links .nav-cta:hover { background: var(--orange-h); color: var(--white); }
+
+    .nav-burger { display: none; flex-direction: column; gap: 5px; padding: 6px 4px; }
+    .nav-burger span { display: block; width: 24px; height: 2px; background: var(--cream); border-radius: 2px; transition: transform var(--t), opacity var(--t); }
+    .nav-burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav-mobile { display: none; flex-direction: column; background: rgba(30,13,5,0.98); border-top: 1px solid rgba(244,140,6,0.12); }
+    .nav-mobile.open { display: flex; }
+    .nav-mobile a { padding: 1rem 1.5rem; font-size: 1rem; font-weight: 600; color: var(--cream-muted); border-bottom: 1px solid rgba(255,255,255,0.04); transition: color var(--t), background var(--t); }
+    .nav-mobile a:hover { color: var(--gold-light); background: rgba(255,255,255,0.02); }
+    .nav-mobile .mob-cta { margin: 1rem 1.5rem; background: var(--orange); color: var(--white); text-align: center; padding: 1rem; border-radius: 8px; border-bottom: none; box-shadow: 0 4px 16px rgba(201,68,8,0.4); }
+    .nav-mobile .mob-cta:hover { background: var(--orange-h); color: var(--white); }
+
+    /* =========================================
+       HERO – Warm Grill Summer Design
+    ========================================= */
+    #hero {   
+      position: relative; min-height: 100svh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden; padding: 0;
+      background: linear-gradient(180deg, #7A3C14 0%, #5A2A0C 25%, #3E1A06 55%, #2A1002 100%);
+    }
+    .hero-bg {
+      position: absolute; inset: 0; z-index: 1;
+      background: url('ec-grillhaehnchen-1.webp') center 40%/cover no-repeat;
+      transform: scale(1.08); will-change: transform;
+      filter: brightness(0.88) saturate(1.2);
+    }
+    .hero-glow {
+      position: absolute; inset: 0; pointer-events: none; z-index: 2;
+      background:
+        radial-gradient(ellipse 110% 50% at 50% 108%, rgba(232,93,4,0.55) 0%, transparent 62%),
+        radial-gradient(ellipse 60% 35% at 20% 110%, rgba(244,140,6,0.38) 0%, transparent 55%),
+        radial-gradient(ellipse 60% 35% at 80% 110%, rgba(244,140,6,0.38) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 25% at 50% 60%, rgba(255,160,40,0.08) 0%, transparent 70%);
+      animation: glowPulse 3.5s ease-in-out infinite;
+    }
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.82; }
+      50%       { opacity: 1;   }
+    }
+    .hero-flames {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      height: 45vh; pointer-events: none; z-index: 4;
+    }
+    .flame {
+      position: absolute; bottom: 0;
+      left: var(--x, 50%);
+      width: var(--w, 30px);
+      height: var(--h, 80px);
+      background: linear-gradient(to top,
+        rgba(180,45,0,0.85)   0%,
+        rgba(232,93,4,0.75)  22%,
+        rgba(244,140,6,0.60) 50%,
+        rgba(255,195,55,0.28) 75%,
+        transparent          100%
+      );
+      border-radius: 50% 50% 22% 22% / 62% 62% 38% 38%;
+      filter: blur(var(--blur, 5px));
+      opacity: 0;
+      transform-origin: bottom center;
+      will-change: transform, opacity;
+      animation: flameRise var(--dur, 2.6s) var(--d, 0s) ease-in-out infinite;
+    }
+    @keyframes flameRise {
+      0%   { opacity: 0;                            transform: translateY(18px)   scaleX(1.00); }
+      12%  { opacity: var(--op, 0.42);              transform: translateY(0)      scaleX(1.00); }
+      42%  { opacity: var(--op, 0.42);              transform: translateY(-52px)  scaleX(0.88); }
+      72%  { opacity: calc(var(--op, 0.42) * 0.52); transform: translateY(-112px) scaleX(0.58); }
+      100% { opacity: 0;                            transform: translateY(-188px) scaleX(0.22); }
+    }
+    .hero-overlay {
+      position: absolute; inset: 0; z-index: 3; pointer-events: none;
+      background:
+        linear-gradient(180deg,
+          rgba(20,  8,  2, 0.78) 0%,
+          rgba(32, 12,  4, 0.42) 30%,
+          rgba(26, 10,  3, 0.18) 58%,
+          rgba(18,  7,  2, 0.32) 78%,
+          rgba(10,  4,  1, 0.72) 100%
+        ),
+        linear-gradient(90deg,
+          rgba(20,  8,  2, 0.60) 0%,
+          rgba(20,  8,  2, 0.18) 50%,
+          rgba(20,  8,  2, 0.00) 100%
+        );
+    }
+    .hero-content {
+      position: relative; z-index: 5; text-align: center;
+      padding: 9rem 1.5rem 5rem; max-width: 820px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(244,140,6,0.14); border: 1px solid rgba(244,140,6,0.38);
+      color: var(--gold-light); font-size: 0.72rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      padding: 0.4rem 1.1rem; border-radius: 100px; margin-bottom: 1.75rem;
+    }
+    .hero-title { font-size: clamp(2.8rem, 8vw, 6rem); color: var(--white); margin-bottom: 0.5rem; text-shadow: 0 2px 28px rgba(0,0,0,0.65), 0 1px 8px rgba(0,0,0,0.45); }
+    .hero-title em { color:goldenrod; font-style: normal; }
+    .hero-by { font-family: 'Karla', sans-serif; font-size: clamp(0.9rem, 2vw, 1.2rem); font-weight: 700; color: rgba(255,255,255,0.68); letter-spacing: 0.18em; text-transform: uppercase; margin-bottom: 1.5rem; }
+    .hero-sub { font-size: clamp(1rem, 2.5vw, 1.25rem); color: #FAFAF5; max-width: 580px; margin: 0 auto 2.75rem; line-height: 1.75; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+    .hero-stats {
+      display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;
+      margin-top: 3.5rem; padding-top: 2.5rem; border-top: 1px solid rgba(244,140,6,0.18);
+    }
+    .hero-stat {
+      background: rgba(255,255,255,0.07);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(244,140,6,0.25);
+      border-radius: 14px; padding: 1rem 1.6rem; text-align: center;
+      min-width: 110px;
+    }
+    .hero-stat-num { font-family: 'Playfair Display SC', serif; font-size: 2.2rem; color: var(--gold-light); line-height: 1; }
+    .hero-stat-label { font-size: 0.78rem; color: #D8CCBB; margin-top: 0.3rem; }
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+      z-index: 5; display: flex; flex-direction: column; align-items: center; gap: 0.4rem;
+      color: var(--cream-muted); font-size: 0.68rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      animation: bounce 2.2s ease-in-out infinite;
+    }
+    @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(7px)} }
+
+    /* =========================================
+       GALERIE & PREISE
+    ========================================= */
+    #galerie { background: linear-gradient(180deg, #6A3214 0%, #4A2008 60%, #2E1206 100%); }
+    .section-header { text-align: center; margin-bottom: 3.5rem; }
+    .section-header p.sub { color: var(--cream-muted); margin-top: 0.9rem; font-size: 1rem; }
+
+    .slideshow-wrap {
+      position: relative; max-width: 520px; margin: 0 auto 3rem;
+      border-radius: var(--radius-lg); overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.55);
+      border: 1px solid var(--border);
+    }
+    .slideshow { position: relative; width: 100%; background: var(--dark-3); }
+    .slide { display: none; }
+    .slide.active { display: block; }
+    .slide img {
+      width: 100%; aspect-ratio: 4/5;
+      object-fit: contain; object-position: center;
+      display: block; padding: 1.25rem;
+    }
+    .slide-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 42px; height: 42px; border-radius: 50%;
+      background: rgba(18,6,0,0.75); backdrop-filter: blur(8px);
+      border: 1px solid rgba(212,144,42,0.4);
+      color: var(--gold-light); display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: background var(--t), border-color var(--t);
+      z-index: 10;
+    }
+    .slide-btn:hover { background: rgba(200,80,16,0.7); border-color: var(--gold-light); }
+    .slide-prev { left: 0.75rem; }
+    .slide-next { right: 0.75rem; }
+    .slide-dots {
+      position: absolute; bottom: 1rem; left: 50%; transform: translateX(-50%);
+      display: flex; gap: 0.5rem; z-index: 10;
+    }
+    .slide-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.3); border: none; cursor: pointer;
+      transition: background var(--t), transform var(--t);
+      padding: 0;
+    }
+    .slide-dot.active { background: var(--gold-light); transform: scale(1.3); }
+
+    .price-bar {
+      max-width: 520px; margin: 0 auto 1.25rem;
+      background: rgba(255,255,255,0.05);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid var(--border); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .price-item {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.95rem 1.5rem;
+    }
+    .price-name { font-size: 0.95rem; color: var(--white); font-weight: 600; white-space: nowrap; }
+    .price-dots { flex: 1; border-bottom: 1px dashed rgba(212,144,42,0.3); margin-bottom: 2px; }
+    .price-val { font-family: 'Playfair Display SC', serif; font-size: 1.1rem; color: var(--gold-light); white-space: nowrap; }
+    .price-divider { border: none; border-top: 1px solid rgba(255,255,255,0.06); margin: 0; }
+    .galerie-actions {
+      display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center;
+      max-width: 520px; margin: 0 auto;
+    }
+    .btn-whatsapp {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: #25D366; color: #fff;
+      font-size: 1rem; font-weight: 700;
+      padding: 0.9rem 2.1rem; border-radius: 8px;
+      letter-spacing: 0.02em; cursor: pointer;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+    }
+    .btn-whatsapp:hover { background: #1ebe5d; transform: translateY(-2px); box-shadow: 0 8px 28px rgba(37,211,102,0.45); }
+
+    /* =========================================
+       ABOUT
+    ========================================= */
+    /* =========================================
+       WAGEN
+    ========================================= */
+    #wagen { background: linear-gradient(180deg, #5A2C0A 0%, #3E1C06 55%, #281204 100%); }
+    .wagen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: center; }
+    .wagen-img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: 0 24px 64px rgba(0,0,0,0.5); }
+    .wagen-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center; display: block; }
+    .wagen-tag {
+      position: absolute; bottom: 1.5rem; left: 1.5rem;
+      background: rgba(18,8,0,0.82); backdrop-filter: blur(10px);
+      border: 1px solid rgba(212,144,42,0.4);
+      color: var(--gold-light); font-size: 1rem; font-style: italic;
+      font-family: 'Playfair Display SC', serif;
+      padding: 0.6rem 1.2rem; border-radius: 8px;
+      letter-spacing: 0.04em;
+    }
+    .wagen-text .label { margin-bottom: 0.4rem; }
+    .wagen-text .section-title { margin-bottom: 1.25rem; }
+    .wagen-text p { color: var(--cream-muted); font-size: 0.93rem; line-height: 1.78; margin-bottom: 1rem; }
+    .wagen-features { display: flex; flex-direction: column; gap: 0.75rem; margin-top: 1.75rem; }
+    .wagen-feature { display: flex; align-items: center; gap: 0.9rem; }
+    .wagen-feature-icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: rgba(200,80,16,0.15); border: 1px solid rgba(212,144,42,0.3);
+      border-radius: 9px; display: flex; align-items: center; justify-content: center;
+    }
+    .wagen-feature-icon svg { width: 16px; height: 16px; color: var(--gold-light); }
+    .wagen-feature span { font-size: 0.9rem; color: var(--cream-muted); }
+    .wagen-cta {
+      margin-top: 2.5rem; padding-top: 2.25rem;
+      border-top: 1px solid var(--border);
+    }
+    .wagen-cta-title { font-size: clamp(1.6rem, 3.5vw, 2.2rem); margin-bottom: 0.75rem; }
+    .wagen-cta-text { color: var(--cream-muted); font-size: 1.05rem; line-height: 1.75; margin-bottom: 2rem; }
+
+    @media (max-width: 900px) {
+      .wagen-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+
+    #about { background: linear-gradient(180deg, #724018 0%, #4E280A 55%, #321608 100%); }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4.5rem; align-items: center; }
+    .about-img-wrap { position: relative; }
+    .about-img { width: 100%; aspect-ratio: 3/4; object-fit: cover; object-position: center top; border-radius: var(--radius-lg); border: 1px solid var(--border); }
+    .about-badge {
+      position: absolute; bottom: -1.5rem; right: -1.5rem;
+      background: var(--orange); color: var(--white); border-radius: var(--radius);
+      padding: 1.1rem 1.6rem; text-align: center; box-shadow: var(--shadow); min-width: 110px;
+    }
+    .about-badge-num { font-family: 'Playfair Display SC', serif; font-size: 2.2rem; line-height: 1; }
+    .about-badge-text { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; opacity: 0.9; margin-top: 0.2rem; }
+    .about-text .label { margin-bottom: 0.4rem; }
+    .about-text .section-title { margin-bottom: 1.25rem; }
+    .about-text p { color: #FAFAF5 font-size: 0.93rem; line-height: 1.78; margin-bottom: 1rem; }
+    .about-facts { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin-top: 2rem; }
+    .about-fact {
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(244,140,6,0.28);
+      border-radius: var(--radius-lg); padding: 1.1rem 1.25rem;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+    .about-fact-num { font-family: 'Playfair Display SC', serif; font-size: 1.7rem; color: var(--gold-light); line-height: 1; }
+    .about-fact-label { font-size: 0.78rem; color: #ede9e4; margin-top: 0.2rem; }
+
+    /* =========================================
+       CONTACT
+    ========================================= */
+    #contact { background: linear-gradient(180deg, #6A3010 0%, #4A2008 55%, #301408 100%); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.6fr; gap: 4.5rem; align-items: start; }
+    .contact-info .label { margin-bottom: 0.4rem; }
+    .contact-info .section-title { margin-bottom: 1.25rem; }
+    .contact-info > p { color: var(--cream-muted); font-size: 0.93rem; line-height: 1.75; margin-bottom: 2.25rem; }
+    .contact-items { display: flex; flex-direction: column; gap: 1.4rem; }
+    .contact-item { display: flex; align-items: flex-start; gap: 1rem; }
+    .contact-item-icon {
+      width: 42px; height: 42px; background: rgba(201,68,8,0.13); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    .contact-item-icon svg { width: 18px; height: 18px; color: var(--orange); }
+    .contact-item-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-muted); margin-bottom: 0.25rem; }
+    .contact-item-value { font-size: 0.92rem; color: var(--white); }
+
+    /* Form */
+    .form-wrap { background: var(--dark-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 2.5rem; }
+    .form-title { font-family: 'Playfair Display SC', serif; font-size: 1.5rem; color: var(--white); margin-bottom: 2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1rem; }
+    .form-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-muted); }
+    .form-input, .form-select, .form-textarea {
+      background: var(--dark-3); border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 8px; color: var(--cream); font-size: 0.93rem;
+      padding: 0.78rem 1rem; width: 100%;
+      transition: border-color var(--t), box-shadow var(--t); outline: none; -webkit-appearance: none;
+    }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(168,158,138,0.4); }
+    .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); box-shadow: 0 0 0 3px rgba(244,140,6,0.14); }
+    .form-select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23A89E8A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat; background-position: right 1rem center; padding-right: 2.5rem; cursor: pointer;
+    }
+    .form-select option { background: var(--dark-3); color: var(--cream); }
+    .form-textarea { resize: vertical; min-height: 110px; max-height: 280px; }
+    .form-submit {
+      width: 100%; background: var(--orange); color: var(--white);
+      font-size: 1rem; font-weight: 700; padding: 1.05rem; border-radius: 8px; margin-top: 0.5rem;
+      transition: background var(--t), transform var(--t), box-shadow var(--t);
+      box-shadow: 0 4px 18px rgba(201,68,8,0.38); letter-spacing: 0.02em;
+    }
+    .form-submit:hover { background: var(--orange-h); transform: translateY(-2px); box-shadow: 0 8px 26px rgba(201,68,8,0.5); }
+    .form-submit:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .form-success { display: none; text-align: center; padding: 2.5rem 1.5rem; }
+    .form-success.show { display: block; }
+    .success-icon { width: 60px; height: 60px; background: rgba(34,197,94,0.12); border: 1.5px solid rgba(34,197,94,0.3); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; }
+    .success-icon svg { width: 28px; height: 28px; color: #22c55e; }
+    .form-success h3 { font-size: 1.4rem; margin-bottom: 0.6rem; }
+    .form-success p { color: var(--cream-muted); font-size: 0.9rem; line-height: 1.65; }
+
+    /* =========================================
+       FOOTER
+    ========================================= */
+    footer { background: var(--dark); border-top: 1px solid rgba(244,140,6,0.1); padding: 3.5rem 0 2rem; }
+    .footer-top { display: grid; grid-template-columns: 1.6fr 1fr 1fr; gap: 3rem; margin-bottom: 2.75rem; }
+    .footer-brand .logo-text { font-family: 'Playfair Display SC', serif; font-size: 1.3rem; color: var(--white); display: block; margin-bottom: 0.2rem; }
+    .footer-brand .logo-text em { color: var(--orange); font-style: normal; }
+    .footer-brand .logo-by { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--gold-light); display: block; margin-bottom: 1rem; }
+    .footer-brand p { font-size: 0.85rem; color: var(--cream-muted); line-height: 1.7; max-width: 280px; margin-bottom: 1.5rem; }
+    .footer-socials { display: flex; gap: 0.75rem; }
+    .social-btn { width: 38px; height: 38px; background: var(--dark-2); border: 1px solid var(--border); border-radius: 8px; display: flex; align-items: center; justify-content: center; color: var(--cream-muted); transition: all var(--t); cursor: pointer; }
+    .social-btn:hover { border-color: var(--orange); color: var(--orange); background: rgba(201,68,8,0.1); }
+    .social-btn svg { width: 16px; height: 16px; }
+    .social-btn-wa { background: #25D366; border-color: #25D366; color: #fff; }
+    .social-btn-wa:hover { background: #1ebe5d; border-color: #1ebe5d; color: #fff; }
+    .footer-col h4 { font-family: 'Karla', sans-serif; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 1.35rem; }
+    .footer-col ul { display: flex; flex-direction: column; gap: 0.75rem; }
+    .footer-col li a, .footer-col li span { font-size: 0.875rem; color: var(--cream-muted); transition: color var(--t); }
+    .footer-col li a:hover { color: var(--cream); }
+    .footer-bottom { border-top: 1px solid rgba(255,255,255,0.05); padding-top: 1.75rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { font-size: 0.8rem; color: var(--cream-muted); }
+    .footer-legal { display: flex; gap: 1.75rem; }
+    .footer-legal a { font-size: 0.8rem; color: var(--cream-muted); transition: color var(--t); }
+    .footer-legal a:hover { color: var(--cream); }
+
+    /* =========================================
+       SCROLL ANIMATIONS
+    ========================================= */
+    .fade-in { opacity: 0; transform: translateY(22px); transition: opacity 0.55s ease, transform 0.55s ease; }
+    .fade-in.visible { opacity: 1; transform: none; }
+    /* WhatsApp Float */
+    .wa-float {
+      position: fixed; bottom: 1.75rem; right: 1.75rem; z-index: 200;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      cursor: pointer;
+    }
+    .wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.6); }
+    .wa-float svg { width: 30px; height: 30px; color: #fff; }
+    .wa-float-tooltip {
+      position: absolute; right: 68px; top: 50%; transform: translateY(-50%);
+      background: rgba(18,6,0,0.92); backdrop-filter: blur(8px);
+      color: #fff; font-size: 0.82rem; font-weight: 600;
+      padding: 0.4rem 0.85rem; border-radius: 6px; white-space: nowrap;
+      opacity: 0; pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+    .wa-float:hover .wa-float-tooltip { opacity: 1; }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-in, .fade-in.visible { opacity: 1; transform: none; transition: none; }
+      .hero-scroll { animation: none; }
+      .btn-primary:hover, .btn-secondary:hover { transform: none; }
+      .menu-card:hover, .party-card:hover { transform: none; }
+      .hero-flames, .hero-glow { display: none !important; }
+    }
+
+    /* =========================================
+       RESPONSIVE
+    ========================================= */
+    @media (max-width: 900px) {
+      .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-badge { right: 0.75rem; bottom: -1.25rem; }
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    }
+    @media (max-width: 768px) {
+      section { padding: 3.5rem 0; }
+      .nav-links { display: none; }
+      .nav-burger { display: flex; }
+      .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-stats { gap: 0 2rem; }
+    }
+    @media (max-width: 520px) {
+      .hero-title { font-size: 2.5rem; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .party-grid { grid-template-columns: 1fr; }
+      .about-facts { grid-template-columns: 1fr 1fr; }
+      .form-wrap { padding: 1.5rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .features-box { padding: 1.75rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===================== NAV ===================== -->
+  <header>
+    <nav class="nav" id="navbar" aria-label="Hauptnavigation">
+      <div class="nav-inner">
+        <a href="#hero" class="nav-logo" aria-label="Hähnchenwagen by Eray – Startseite">
+          <svg class="nav-logo-icon" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <circle cx="19" cy="19" r="19" fill="rgba(201,68,8,0.15)"/>
+            <path d="M19 30c-5.523 0-8.5-3.6-8.5-7.5 0-3 1.8-5.2 3.5-6.5-.5 2.5.5 4.2 1.8 5.2 0-3.5 2.2-6.2 3.2-8.2.6 2.5 2.5 4.2 4 5.8.6-1.2.6-2.5 0-3.8 2 2 3.5 4.5 3.5 7.5 0 3.9-3 7.5-7.5 7.5z" fill="#C94408"/>
+            <ellipse cx="19" cy="24.5" rx="3" ry="2.5" fill="#D49018" opacity="0.8"/>
+          </svg>
+          <div>
+            <div class="nav-logo-text">Hähnchenwagen</div>
+            <div class="nav-by">by Eray</div>
+          </div>
+        </a>
+        <ul class="nav-links" role="list">
+          <li><a href="#galerie">Unsere Gerichte</a></li>
+          <li><a href="#wagen">Der Wagen</a></li>
+          <li><a href="#contact" class="nav-cta">Jetzt anfragen</a></li>
+        </ul>
+        <button class="nav-burger" id="burger" aria-label="Menü öffnen" aria-expanded="false" aria-controls="mobile-nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+      <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile Navigation">
+        <a href="#galerie" onclick="closeNav()">Unsere Gerichte</a>
+        <a href="#wagen"   onclick="closeNav()">Der Wagen</a>
+        <a href="#contact" class="mob-cta" onclick="closeNav()">Jetzt Party anfragen</a>
+      </nav>
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- ===================== HERO ===================== -->
+    <section id="hero" aria-labelledby="hero-heading">
+      <div class="hero-bg" id="heroBg" aria-hidden="true"></div>
+      <div class="hero-glow" aria-hidden="true"></div>
+      <div class="hero-flames" aria-hidden="true" id="heroFlames">
+        <div class="flame" style="--x:3%;--w:28px;--h:85px;--d:0.1s;--dur:2.8s;--op:0.42;--blur:5px"></div>
+        <div class="flame" style="--x:9%;--w:20px;--h:60px;--d:0.8s;--dur:2.2s;--op:0.35;--blur:4px"></div>
+        <div class="flame" style="--x:16%;--w:38px;--h:105px;--d:0.3s;--dur:3.2s;--op:0.48;--blur:7px"></div>
+        <div class="flame" style="--x:23%;--w:22px;--h:68px;--d:1.2s;--dur:2.4s;--op:0.37;--blur:4px"></div>
+        <div class="flame" style="--x:31%;--w:42px;--h:115px;--d:0.5s;--dur:3.5s;--op:0.50;--blur:8px"></div>
+        <div class="flame" style="--x:39%;--w:18px;--h:55px;--d:1.6s;--dur:2.0s;--op:0.32;--blur:3px"></div>
+        <div class="flame" style="--x:46%;--w:48px;--h:125px;--d:0.0s;--dur:3.8s;--op:0.52;--blur:9px"></div>
+        <div class="flame" style="--x:54%;--w:22px;--h:65px;--d:0.9s;--dur:2.3s;--op:0.36;--blur:4px"></div>
+        <div class="flame" style="--x:61%;--w:40px;--h:108px;--d:0.4s;--dur:3.3s;--op:0.47;--blur:7px"></div>
+        <div class="flame" style="--x:69%;--w:20px;--h:58px;--d:1.3s;--dur:2.1s;--op:0.33;--blur:3px"></div>
+        <div class="flame" style="--x:76%;--w:35px;--h:90px;--d:0.6s;--dur:2.9s;--op:0.44;--blur:6px"></div>
+        <div class="flame" style="--x:83%;--w:25px;--h:72px;--d:1.0s;--dur:2.6s;--op:0.38;--blur:5px"></div>
+        <div class="flame" style="--x:90%;--w:32px;--h:88px;--d:0.2s;--dur:3.0s;--op:0.45;--blur:6px"></div>
+        <div class="flame" style="--x:96%;--w:18px;--h:52px;--d:1.5s;--dur:1.9s;--op:0.30;--blur:3px"></div>
+      </div>
+      <div class="hero-overlay" aria-hidden="true"></div>
+      <div class="hero-content">
+        <div class="hero-badge" aria-label="Mobiler Hähnchengrillwagen">
+          <svg width="11" height="13" viewBox="0 0 11 13" fill="currentColor" aria-hidden="true">
+            <path d="M5.5 13C2.46 13 0 10.78 0 8c0-2.4 1.43-4.22 2.85-5.37-.43 1.94.43 3.5 1.58 4.37C4.43 4.2 6 2 6.57 0 7.14 2 9 3.5 9.71 5c.43-1 .43-2.1 0-3.1C11 3.5 11 5.6 11 8c0 2.78-2.46 5-5.5 5z"/>
+          </svg>
+          Mobiler Hähnchengrillwagen
+        </div>
+        <h1 class="hero-title" id="hero-heading">
+          Knuspriges<br><em>Grillhähnchen</em><br>für jede Feier
+        </h1>
+        <p class="hero-by">Hähnchenwagen by Eray</p>
+        <p class="hero-sub">Frisch vom Spieß, direkt zu Ihrem Event. Wir bringen echten Grillgeschmack zu Geburtstagen, Firmenfeiern und Hochzeiten.</p>
+        <div class="hero-actions">
+          <a href="#contact" class="btn-primary">
+            Jetzt Party anfragen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="#galerie" class="btn-secondary">Speisekarte ansehen</a>
+        </div>
+        <div class="hero-stats" role="list">
+          <div class="hero-stat" role="listitem">
+            <div class="hero-stat-num">10+</div>
+            <div class="hero-stat-label">Jahre Erfahrung</div>
+          </div>
+          <div class="hero-stat" role="listitem">
+            <div class="hero-stat-num">100+</div>
+            <div class="hero-stat-label">Events beliefert</div>
+          </div>
+
+
+        </div>
+      </div>
+      <a href="#galerie" class="hero-scroll" aria-label="Nach unten scrollen">
+        <span>Entdecken</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+    </section>
+
+
+    <!-- ===================== GALERIE & PREISE ===================== -->
+    <section id="galerie" aria-labelledby="galerie-heading">
+      <div class="container">
+        <div class="section-header fade-in">
+          <p class="label">Frisch vom Spieß</p>
+          <h2 class="section-title" id="galerie-heading">Unsere Gerichte</h2>
+          <p class="sub">Knusprig, saftig, unwiderstehlich – direkt bei dir vor Ort.</p>
+        </div>
+
+        <!-- Slideshow -->
+        <div class="slideshow-wrap fade-in">
+          <div class="slideshow" id="slideshow" aria-live="polite">
+            <div class="slide active">
+              <img src="bilder/HalbesHähnchen.jpeg" alt="½ Hähnchen mit Pommes, Nuggets und Krautsalat" loading="eager">
+            </div>
+            <div class="slide">
+              <img src="bilder/hi.jpeg" alt="½ Hähnchen mit Pommes und Krautsalat" loading="lazy">
+            </div>
+            <div class="slide">
+              <img src="bilder/WhatsApp Image 2026-04-30 at 23.10.24 (2).jpeg" alt="½ Hähnchen mit Pommes, Krautsalat und Fanta" loading="lazy">
+            </div>
+            <div class="slide">
+              <img src="bilder/WhatsApp Image 2026-04-30 at 23.11.09.jpeg" alt="½ Hähnchen mit Pommes und Maracuja" loading="lazy">
+            </div>
+          </div>
+          <button class="slide-btn slide-prev" id="slidePrev" aria-label="Vorheriges Bild">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+          </button>
+          <button class="slide-btn slide-next" id="slideNext" aria-label="Nächstes Bild">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+          </button>
+          <div class="slide-dots" id="slideDots" role="tablist" aria-label="Bildauswahl">
+            <button class="slide-dot active" data-idx="0" role="tab" aria-selected="true" aria-label="Bild 1"></button>
+            <button class="slide-dot" data-idx="1" role="tab" aria-selected="false" aria-label="Bild 2"></button>
+            <button class="slide-dot" data-idx="2" role="tab" aria-selected="false" aria-label="Bild 3"></button>
+            <button class="slide-dot" data-idx="3" role="tab" aria-selected="false" aria-label="Bild 4"></button>
+          </div>
+        </div>
+
+        <!-- Preise -->
+        <div class="galerie-actions fade-in">
+          <a href="#contact" class="btn-primary">
+            Angebot anfragen
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+          </a>
+          <a href="https://wa.me/4917690230747" class="btn-whatsapp" target="_blank" rel="noopener" aria-label="Per WhatsApp kontaktieren">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            Per WhatsApp schreiben
+          </a>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ===================== DER WAGEN ===================== -->
+    <section id="wagen" aria-labelledby="wagen-heading">
+      <div class="container">
+        <div class="wagen-grid">
+          <div class="wagen-img-wrap fade-in">
+            <img
+              class="wagen-img"
+              src="Wagenfoto.jpeg"
+              alt="Der Hähnchenwagen von Eray – voll ausgestattet und einsatzbereit"
+              loading="lazy" width="600" height="800"
+            />
+            <div class="wagen-tag">Einfach lecker…</div>
+          </div>
+          <div class="wagen-text fade-in">
+            <p class="label">Unser Wagen</p>
+            <h2 class="section-title" id="wagen-heading">Komplett ausgestattet – überall einsatzbereit</h2>
+            <div class="wagen-cta">
+              <h3 class="wagen-cta-title">Bald vielleicht bei dir?</h3>
+              <p class="wagen-cta-text">Ob Geburtstag, Firmenfeier oder Hochzeit – ich bringe den Wagen direkt zu dir. Einfach anfragen, Datum sichern, fertig.</p>
+              <a href="#contact" class="btn-primary">Jetzt anfragen
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+
+    <!-- ===================== KONTAKT ===================== -->
+    <section id="contact" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="contact-grid">
+          <div class="contact-info fade-in">
+            <p class="label">Kontakt aufnehmen</p>
+            <h2 class="section-title" id="contact-heading">Jetzt anfragen</h2>
+            <p>Füllen Sie das Formular aus – wir melden uns innerhalb von 24 Stunden mit einem unverbindlichen Angebot für Ihr Event.</p>
+            <div class="contact-items">
+              <div class="contact-item">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 014.36 13.1a19.79 19.79 0 01-3.07-8.67A2 2 0 013.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L7.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-item-label">Telefon</div>
+                  <div class="contact-item-value"><a href="tel:+4917690230747" style="color:inherit">0176 90230747</a></div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                    <polyline points="22,6 12,13 2,6"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-item-label">E-Mail</div>
+                  <div class="contact-item-value"><a href="mailto:grillhaehnchen.eray@gmail.com" style="color:inherit">grillhaehnchen.eray@gmail.com</a></div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-item-label">Einsatzgebiet</div>
+                  <div class="contact-item-value">Auf Anfrage – mobiler Einsatz</div>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item-icon" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                  </svg>
+                </div>
+                <div>
+                  <div class="contact-item-label">Erreichbarkeit</div>
+                  <div class="contact-item-value">Mo – Sa, 9:00 – 18:00 Uhr</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-wrap fade-in">
+            <p class="form-title">Party anfragen</p>
+            <div id="formFields">
+              <form id="contactForm" action="https://formspree.io/f/mbdwjeer" method="POST" novalidate>
+                <input type="hidden" name="_replyto" value="">
+                <input type="hidden" name="_subject" value="Neue Anfrage – Hähnchenwagen by Eray">
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="fname">Vorname *</label>
+                    <input class="form-input" type="text" id="fname" name="fname" placeholder="Max" required autocomplete="given-name">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="lname">Nachname *</label>
+                    <input class="form-input" type="text" id="lname" name="lname" placeholder="Mustermann" required autocomplete="family-name">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="email">E-Mail *</label>
+                    <input class="form-input" type="email" id="email" name="email" placeholder="max@email.de" required autocomplete="email">
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="phone">Telefon</label>
+                    <input class="form-input" type="tel" id="phone" name="phone" placeholder="0176 …" autocomplete="tel">
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="event-type">Art der Veranstaltung *</label>
+                    <select class="form-select" id="event-type" name="event-type" required>
+                      <option value="" disabled selected>Bitte wählen …</option>
+                      <option value="birthday">Geburtstagsfeier</option>
+                      <option value="corporate">Firmenfeier</option>
+                      <option value="wedding">Hochzeit</option>
+                      <option value="festival">Stadtfest / Markt</option>
+                      <option value="sports">Sport / Vereinsfest</option>
+                      <option value="other">Sonstiges</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="guests">Anzahl Gäste *</label>
+                    <input class="form-input" type="number" id="guests" name="guests" placeholder="z. B. 80" min="10" required>
+                  </div>
+                </div>
+                <div class="form-row">
+                  <div class="form-group">
+                    <label class="form-label" for="event-date">Gewünschtes Datum *</label>
+                    <input class="form-input" type="date" id="event-date" name="event-date" required>
+                  </div>
+                  <div class="form-group">
+                    <label class="form-label" for="location">Veranstaltungsort</label>
+                    <input class="form-input" type="text" id="location" name="location" placeholder="Ort, PLZ">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label class="form-label" for="message">Besondere Wünsche</label>
+                  <textarea class="form-textarea" id="message" name="message" placeholder="Teilen Sie uns Ihre Wünsche oder Fragen mit …"></textarea>
+                </div>
+                <button type="submit" class="form-submit" id="submitBtn">Anfrage absenden</button>
+              </form>
+            </div>
+            <div class="form-success" id="formSuccess" role="alert" aria-live="polite">
+              <div class="success-icon" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Anfrage erhalten!</h3>
+              <p>Vielen Dank! Wir melden uns innerhalb von 24 Stunden mit Ihrem persönlichen Angebot zurück.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ===================== FOOTER ===================== -->
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="logo-text">Hähnchenwagen</span>
+          <span class="logo-by">by Eray</span>
+          <p>Ihr mobiler Hähnchengrillwagen für Parties, Events und Catering – frisch, knusprig und unvergesslich lecker.</p>
+          <nav class="footer-socials" aria-label="Social Media Links">
+            <a href="https://wa.me/4917690230747" class="social-btn social-btn-wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            </a>
+          </nav>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#galerie">Unsere Gerichte</a></li>
+            <li><a href="#wagen">Der Wagen</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Kontakt</h4>
+          <ul>
+            <li><a href="tel:+4917690230747">0176 90230747</a></li>
+            <li><a href="mailto:grillhaehnchen.eray@gmail.com">grillhaehnchen.eray@gmail.com</a></li>
+            <li><span>Mo – Sa, 9 – 18 Uhr</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2026 Hähnchenwagen by Eray. Alle Rechte vorbehalten.</p>
+        <nav class="footer-legal" aria-label="Rechtliche Links">
+          <a href="impressum.html">Impressum</a>
+          <a href="datenschutz.html">Datenschutz</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Slideshow
+    (function() {
+      const slides = document.querySelectorAll('.slide');
+      const dots   = document.querySelectorAll('.slide-dot');
+      let cur = 0, timer;
+
+      function goTo(n) {
+        slides[cur].classList.remove('active');
+        dots[cur].classList.remove('active');
+        dots[cur].setAttribute('aria-selected', 'false');
+        cur = (n + slides.length) % slides.length;
+        slides[cur].classList.add('active');
+        dots[cur].classList.add('active');
+        dots[cur].setAttribute('aria-selected', 'true');
+      }
+      function next() { goTo(cur + 1); }
+      function prev() { goTo(cur - 1); }
+      function startAuto() { timer = setInterval(next, 4000); }
+      function resetAuto() { clearInterval(timer); startAuto(); }
+
+      document.getElementById('slideNext').addEventListener('click', () => { next(); resetAuto(); });
+      document.getElementById('slidePrev').addEventListener('click', () => { prev(); resetAuto(); });
+      dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.idx); resetAuto(); }));
+
+      // Touch swipe
+      let tx = 0;
+      const sw = document.getElementById('slideshow');
+      sw.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+      sw.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - tx;
+        if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetAuto(); }
+      }, { passive: true });
+
+      startAuto();
+    })();
+
+    const navbar = document.getElementById('navbar');
+    const heroBg = document.getElementById('heroBg');
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          const y = window.scrollY;
+          navbar.classList.toggle('scrolled', y > 60);
+          if (heroBg && y < window.innerHeight) heroBg.style.transform = `scale(1.08) translateY(${y * 0.12}px)`;
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+
+    (function () {
+      var mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+      function applyFlameMotion() {
+        var flames = document.getElementById('heroFlames');
+        var glow   = document.querySelector('.hero-glow');
+        var hide   = mq.matches || (navigator.deviceMemory !== undefined && navigator.deviceMemory < 2);
+        if (flames) flames.style.display = hide ? 'none' : '';
+        if (glow)   glow.style.display   = hide ? 'none' : '';
+      }
+      applyFlameMotion();
+      if (mq.addEventListener) mq.addEventListener('change', applyFlameMotion);
+    })();
+
+    const burger    = document.getElementById('burger');
+    const mobileNav = document.getElementById('mobile-nav');
+    burger.addEventListener('click', () => {
+      const open = mobileNav.classList.toggle('open');
+      burger.classList.toggle('open', open);
+      burger.setAttribute('aria-expanded', open);
+      document.body.style.overflow = open ? 'hidden' : '';
+    });
+    function closeNav() {
+      mobileNav.classList.remove('open'); burger.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false'); document.body.style.overflow = '';
+    }
+    window.addEventListener('resize', () => { if (window.innerWidth > 768) closeNav(); });
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+    }, { threshold: 0.1, rootMargin: '0px 0px -36px 0px' });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+    ['.menu-grid', '.party-grid'].forEach(sel => {
+      document.querySelectorAll(`${sel} .fade-in`).forEach((card, i) => { card.style.transitionDelay = `${i * 55}ms`; });
+    });
+
+    const form = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formFields = document.getElementById('formFields');
+    const formSuccess = document.getElementById('formSuccess');
+    document.getElementById('event-date').min = new Date().toISOString().split('T')[0];
+    document.getElementById('email').addEventListener('input', function() {
+      form.querySelector('[name="_replyto"]').value = this.value;
+    });
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      submitBtn.disabled = true; submitBtn.textContent = 'Wird gesendet …';
+      try {
+        const res = await fetch('https://formspree.io/f/mbdwjeer', {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          formFields.style.display = 'none';
+          formSuccess.classList.add('show');
+        } else {
+          submitBtn.disabled = false;
+          submitBtn.textContent = 'Fehler – bitte erneut versuchen';
+        }
+      } catch {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Fehler – bitte erneut versuchen';
+      }
+    });
+  </script>
+
+  <!-- WhatsApp Float Button -->
+  <a href="https://wa.me/4917690230747" class="wa-float" target="_blank" rel="noopener" aria-label="Per WhatsApp kontaktieren">
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    <span class="wa-float-tooltip">Per WhatsApp schreiben</span>
+  </a>
+</body>
+</html>
