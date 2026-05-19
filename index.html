@@ -874,35 +874,37 @@
     // Slideshow
     (function() {
       const slides = document.querySelectorAll('.slide');
-      const dots   = document.querySelectorAll('.slide-dot');
+      if (slides.length <= 1) return;
+      const dots = document.querySelectorAll('.slide-dot');
       let cur = 0, timer;
 
       function goTo(n) {
         slides[cur].classList.remove('active');
-        dots[cur].classList.remove('active');
-        dots[cur].setAttribute('aria-selected', 'false');
+        if (dots[cur]) { dots[cur].classList.remove('active'); dots[cur].setAttribute('aria-selected', 'false'); }
         cur = (n + slides.length) % slides.length;
         slides[cur].classList.add('active');
-        dots[cur].classList.add('active');
-        dots[cur].setAttribute('aria-selected', 'true');
+        if (dots[cur]) { dots[cur].classList.add('active'); dots[cur].setAttribute('aria-selected', 'true'); }
       }
       function next() { goTo(cur + 1); }
       function prev() { goTo(cur - 1); }
       function startAuto() { timer = setInterval(next, 4000); }
       function resetAuto() { clearInterval(timer); startAuto(); }
 
-      document.getElementById('slideNext').addEventListener('click', () => { next(); resetAuto(); });
-      document.getElementById('slidePrev').addEventListener('click', () => { prev(); resetAuto(); });
+      const btnNext = document.getElementById('slideNext');
+      const btnPrev = document.getElementById('slidePrev');
+      if (btnNext) btnNext.addEventListener('click', () => { next(); resetAuto(); });
+      if (btnPrev) btnPrev.addEventListener('click', () => { prev(); resetAuto(); });
       dots.forEach(d => d.addEventListener('click', () => { goTo(+d.dataset.idx); resetAuto(); }));
 
-      // Touch swipe
-      let tx = 0;
       const sw = document.getElementById('slideshow');
-      sw.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
-      sw.addEventListener('touchend', e => {
-        const dx = e.changedTouches[0].clientX - tx;
-        if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetAuto(); }
-      }, { passive: true });
+      if (sw) {
+        let tx = 0;
+        sw.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, { passive: true });
+        sw.addEventListener('touchend', e => {
+          const dx = e.changedTouches[0].clientX - tx;
+          if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); resetAuto(); }
+        }, { passive: true });
+      }
 
       startAuto();
     })();
