@@ -5,8 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Hähnchenwagen by Eray – Ihr mobiler Hähnchengrillwagen für Parties, Firmenfeiern und Hochzeiten. Frisch vom Spieß, direkt zu Ihrem Event.">
   <title>Hähnchenwagen by Eray – Grillhähnchen & Partyservice</title>
-  <link rel="icon" href="bilder/hahnchengrill-logo-transparent-512.png" type="image/png">
-  <link rel="apple-touch-icon" href="bilder/hahnchengrill-logo-transparent-512.png">
+  <link rel="icon" href="bilder/hahnchengrill-logo-dark-1024.png" type="image/png">
+  <link rel="apple-touch-icon" href="bilder/hahnchengrill-logo-dark-1024.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Karla:wght@300;400;500;600;700&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
@@ -464,49 +464,54 @@
 
     /* STANDPLÄTZE */
     #standplaetze { background: linear-gradient(180deg, #1C0C02 0%, #2C1204 100%); }
-    .standplaetze-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.25rem;
+    .standplaetze-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
       margin-top: 3rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
     }
-    .standplatz-card {
+    .standplatz-row {
+      display: grid;
+      grid-template-columns: 160px 1fr auto;
+      align-items: center;
+      gap: 1.5rem;
       background: rgba(255,255,255,0.04);
       border: 1px solid var(--border);
       border-radius: var(--radius-lg);
-      padding: 1.5rem 1.25rem;
-      text-align: center;
-      transition: transform var(--t), border-color var(--t);
+      padding: 1.25rem 1.5rem;
+      transition: border-color var(--t), background var(--t);
     }
-    .standplatz-card:hover { transform: translateY(-3px); border-color: var(--gold); }
-    .standplatz-day {
+    .standplatz-row:hover { border-color: var(--gold); background: rgba(255,255,255,0.07); }
+    .standplatz-day-full {
       font-family: 'Playfair Display SC', serif;
-      font-size: 1.6rem;
+      font-size: 1.05rem;
       color: var(--gold-light);
-      line-height: 1;
-      margin-bottom: 0.75rem;
+      letter-spacing: 0.04em;
     }
-    .standplatz-name {
-      font-weight: 700;
-      font-size: 0.88rem;
-      color: var(--white);
-      margin-bottom: 0.4rem;
+    .standplatz-info { display: flex; flex-direction: column; gap: 0.2rem; }
+    .standplatz-name { font-weight: 700; font-size: 0.9rem; color: var(--white); }
+    .standplatz-addr { font-size: 0.8rem; color: var(--cream-muted); }
+    .standplatz-maps {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.78rem; font-weight: 700;
+      color: var(--gold-light);
+      background: rgba(240,184,64,0.1);
+      border: 1px solid rgba(240,184,64,0.3);
+      border-radius: 6px;
+      padding: 0.4rem 0.75rem;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background var(--t), border-color var(--t);
     }
-    .standplatz-addr {
-      font-size: 0.78rem;
-      color: var(--cream-muted);
-      line-height: 1.55;
+    .standplatz-maps:hover { background: rgba(240,184,64,0.2); border-color: var(--gold-light); }
+    .standplatz-maps svg { flex-shrink: 0; }
+    @media (max-width: 640px) {
+      .standplatz-row { grid-template-columns: 1fr; gap: 0.75rem; }
+      .standplaetze-list { max-width: 100%; }
     }
-    .standplatz-icon {
-      width: 36px; height: 36px;
-      background: rgba(200,80,16,0.15);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 0.85rem;
-    }
-    .standplatz-icon svg { color: var(--orange); }
-    @media (max-width: 900px) { .standplaetze-grid { grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 500px) { .standplaetze-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 900px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
     @media (max-width: 580px) { .reviews-grid { grid-template-columns: 1fr; } }
 
@@ -654,7 +659,7 @@
     <nav class="nav" id="navbar" aria-label="Hauptnavigation">
       <div class="nav-inner">
         <a href="#hero" class="nav-logo" aria-label="Hähnchenwagen by Eray – Startseite">
-          <img src="bilder/hahnchengrill-logo-transparent-512.png" class="nav-logo-icon" alt="Hähnchenwagen by Eray Logo" style="object-fit:contain;">
+          <img src="bilder/hahnchengrill-logo-dark-1024.png" class="nav-logo-icon" alt="Hähnchenwagen by Eray Logo" style="object-fit:contain;">
           <div>
             <div class="nav-logo-text">Hähnchenwagen</div>
             <div class="nav-by">by Eray</div>
@@ -662,6 +667,7 @@
         </a>
         <ul class="nav-links" role="list">
           <li><a href="#galerie">Unsere Gerichte</a></li>
+          <li><a href="#standplaetze">Standplätze</a></li>
           <li><a href="#wagen">Der Wagen</a></li>
           <li><a href="#contact" class="nav-cta">Jetzt anfragen</a></li>
         </ul>
@@ -670,8 +676,9 @@
         </button>
       </div>
       <nav class="nav-mobile" id="mobile-nav" aria-label="Mobile Navigation">
-        <a href="#galerie" onclick="closeNav()">Unsere Gerichte</a>
-        <a href="#wagen"   onclick="closeNav()">Der Wagen</a>
+        <a href="#galerie"      onclick="closeNav()">Unsere Gerichte</a>
+        <a href="#standplaetze" onclick="closeNav()">Standplätze</a>
+        <a href="#wagen"        onclick="closeNav()">Der Wagen</a>
         <a href="#contact" class="mob-cta" onclick="closeNav()">Jetzt Party anfragen</a>
       </nav>
     </nav>
@@ -718,6 +725,10 @@
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="9 18 15 12 9 6"/></svg>
           </a>
           <a href="#galerie" class="btn-secondary">Speisekarte ansehen</a>
+          <a href="#standplaetze" class="btn-secondary">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            Standplätze
+          </a>
         </div>
         <div class="hero-stats" role="list">
           <div class="hero-stat" role="listitem">
@@ -842,42 +853,54 @@
           <h2 class="section-title" id="standplaetze-heading">Unsere Standplätze</h2>
           <p class="sub">Kein Event nötig – komm einfach vorbei.</p>
         </div>
-        <div class="standplaetze-grid">
+        <div class="standplaetze-list">
 
-          <div class="standplatz-card fade-in">
-            <div class="standplatz-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="standplatz-row fade-in">
+            <div class="standplatz-day-full">Dienstag</div>
+            <div class="standplatz-info">
+              <div class="standplatz-name">Netto</div>
+              <div class="standplatz-addr">Bahnhofstraße 79a, 26919 Brake (Unterweser)</div>
             </div>
-            <div class="standplatz-day">Di</div>
-            <div class="standplatz-name">Netto</div>
-            <div class="standplatz-addr">Bahnhofstraße 79a<br>26919 Brake (Unterweser)</div>
+            <a href="https://maps.google.com/?q=Bahnhofstra%C3%9Fe+79a,+26919+Brake+Unterweser" target="_blank" rel="noopener" class="standplatz-maps">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Auf Karte
+            </a>
           </div>
 
-          <div class="standplatz-card fade-in">
-            <div class="standplatz-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="standplatz-row fade-in">
+            <div class="standplatz-day-full">Mittwoch</div>
+            <div class="standplatz-info">
+              <div class="standplatz-name">Netto</div>
+              <div class="standplatz-addr">Marktstraße 10a, 26935 Stadland-Rodenkirchen</div>
             </div>
-            <div class="standplatz-day">Mi</div>
-            <div class="standplatz-name">Netto</div>
-            <div class="standplatz-addr">Marktstraße 10a<br>26935 Stadland-Rodenkirchen</div>
+            <a href="https://maps.google.com/?q=Marktstra%C3%9Fe+10a,+26935+Stadland-Rodenkirchen" target="_blank" rel="noopener" class="standplatz-maps">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Auf Karte
+            </a>
           </div>
 
-          <div class="standplatz-card fade-in">
-            <div class="standplatz-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="standplatz-row fade-in">
+            <div class="standplatz-day-full">Donnerstag</div>
+            <div class="standplatz-info">
+              <div class="standplatz-name">Netto</div>
+              <div class="standplatz-addr">Bahnhofstraße 79a, 26919 Brake (Unterweser)</div>
             </div>
-            <div class="standplatz-day">Do</div>
-            <div class="standplatz-name">Netto</div>
-            <div class="standplatz-addr">Bahnhofstraße 79a<br>26919 Brake (Unterweser)</div>
+            <a href="https://maps.google.com/?q=Bahnhofstra%C3%9Fe+79a,+26919+Brake+Unterweser" target="_blank" rel="noopener" class="standplatz-maps">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Auf Karte
+            </a>
           </div>
 
-          <div class="standplatz-card fade-in">
-            <div class="standplatz-icon">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <div class="standplatz-row fade-in">
+            <div class="standplatz-day-full">Freitag</div>
+            <div class="standplatz-info">
+              <div class="standplatz-name">Netto</div>
+              <div class="standplatz-addr">Sinaburger Str. 10, 26919 Brake (Unterweser)</div>
             </div>
-            <div class="standplatz-day">Fr</div>
-            <div class="standplatz-name">Netto</div>
-            <div class="standplatz-addr">Sinaburger Str. 10<br>26919 Brake (Unterweser)</div>
+            <a href="https://maps.google.com/?q=Sinaburger+Str.+10,+26919+Brake+Unterweser" target="_blank" rel="noopener" class="standplatz-maps">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              Auf Karte
+            </a>
           </div>
 
         </div>
